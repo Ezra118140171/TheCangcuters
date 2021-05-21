@@ -5,16 +5,19 @@ import {createStackNavigator} from '@react-navigation/stack';
 import { createDrawerNavigator,DrawerItemList } from "@react-navigation/drawer";
 import { Ionicons,Feather } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {SafeAreaView, Button, View,Platform } from "react-native";
+import { SafeAreaView, Button, View,Platform } from "react-native";
 
 
 import LoginScreen from '../screen/LoginScreen';
 import dashboardScreen,{dashboardScreenOption} from '../screen/dashboardScreen';
+import ProfileScreen,{ProfileScreenOption} from '../screen/ProfileScreen'
+import DetailScreen,{DetailScreenOption} from '../screen/DetailScreen'
+import PendaftaranScreen,{PendaftaranScreenOption} from '../screen/PendaftaranScreen';
 
 const loginStack = createStackNavigator()
 const NavigationLogin = () => {
   return(
-    <loginStack.Navigator headerMode="none">
+    <loginStack.Navigator headerMode="none"> 
       <loginStack.Screen name="LoginScreen" component={LoginScreen} />
       <loginStack.Screen name="container" component={MealsFavTabNavigator} />
     </loginStack.Navigator>
@@ -26,6 +29,11 @@ const Navigations= () =>{
   return(
     <Stack.Navigator>
       <Stack.Screen name="dashboardScreen" component={dashboardScreen} options={dashboardScreenOption} />
+      <Stack.Screen
+        name="DetailScreen"
+        component={DetailScreen}
+        options={DetailScreenOption}
+      />
     </Stack.Navigator>
   )
 }
@@ -39,19 +47,14 @@ const ProfileNavigation = () =>{
     )
 }
 
-const StackFavotites = createStackNavigator();
-const FavNavigator = () => {
-  return (
-    <StackFavotites.Navigator>
-      <StackFavotites.Screen name="FavoriteScreen" component={FavoriteScreen} options={FavoriteScreenOption} />
-      <StackFavotites.Screen
-        name="MealDetailScreen"
-        component={MealsDetailScreen}
-      />
-    </StackFavotites.Navigator>
-  );
-};
-//end stack
+const PedaftaranStack = createStackNavigator()
+const PedaftaranNavigation = () =>{
+    return(
+      <ProfileStack.Navigator>
+          <ProfileStack.Screen name="Profiles" component={PendaftaranScreen} options={ProfileScreenOption} />
+      </ProfileStack.Navigator>
+    )
+}
 
 const Tab = createBottomTabNavigator();
 const MealsFavTabNavigator = () => {
@@ -68,7 +71,7 @@ const MealsFavTabNavigator = () => {
     >
       <Tab.Screen
         name="Daftar Asprak"
-        component={MainNavigator}
+        component={PendaftaranScreen}
         options={{
           tabBarIcon: (tabInfo) => {
             return (
@@ -108,23 +111,23 @@ const MainNavigator = () => {
       );
     }}
     >
-      <Drawer.Screen name="Dashboard" component={Navigations}  options={{
-          drawerIcon: (props) => (
-            <Ionicons
-              name={Platform.OS === "android" ? "clipboard-outline" : "clipboard-outline"}
-              size={23}
-              color={props.color}
-            />
-          ),
-        }}/>
-        
-        <Drawer.Screen name="Profile" component={ProfileNavigation}  options={{
-          drawerIcon: (props) => (
-            <Feather name="user-check" size={23}  color={props.color} />
-          ),
-        }}/>
-        
-      </Drawer.Navigator>
+    <Drawer.Screen name="Dashboard" component={Navigations}  options={{
+        drawerIcon: (props) => (
+          <Ionicons
+            name={Platform.OS === "android" ? "clipboard-outline" : "clipboard-outline"}
+            size={23}
+            color={props.color}
+          />
+        ),
+      }}/>
+      
+      <Drawer.Screen name="Profile" component={ProfileNavigation}  options={{
+        drawerIcon: (props) => (
+          <Feather name="user-check" size={23}  color={props.color} />
+        ),
+      }}/>
+      
+    </Drawer.Navigator>
   );
 }; 
 
