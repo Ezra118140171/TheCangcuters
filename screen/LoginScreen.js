@@ -21,31 +21,31 @@ const LoginScreen = props => {
           title="LOG IN"
           color="#0148a4"
           clidked={() => {
-            props.navigation.navigate('container')
+            props.navigation.navigate('dashboardScreen')
           }}
         />
       </View>
     </ScrollView>
-    );
-  };
+  );
+};
 
 const styles = StyleSheet.create({
-  container:{
-    flex :1,
-    alignItems:'center',
-    justifyContent:'center'
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-  image:{
-    width:400,
-    height:250,
-    marginVertical:10
+  image: {
+    width: 400,
+    height: 250,
+    marginVertical: 10
   },
-  textTitle:{
-    fontSize:35,
-    margin:3
+  textTitle: {
+    fontSize: 35,
+    margin: 3
   },
-  textBody:{
-    fontSize:16
+  textBody: {
+    fontSize: 16
   }
 })
 
